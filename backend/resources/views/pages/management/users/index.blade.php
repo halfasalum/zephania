@@ -88,12 +88,26 @@
                                                         <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
                                                             Edit
                                                         </a>
-                                                        <a class="dropdown-item bg-success" href="{{ route('users.activate', $user->id) }}">
-                                                            Activate
-                                                        </a>
-                                                        <a class="dropdown-item bg-danger" href="{{ route('users.deactivate', $user->id) }}">
-                                                            De-activate
-                                                        </a>
+                                                      @if(!$user->is_active)
+                                                        <form action="{{ route('users.activate', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" class="dropdown-item bg-success text-white">
+                                                                Activate
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+                                                    @if($user->is_active)
+                                                        <form action="{{ route('users.deactivate', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" class="dropdown-item bg-danger text-white">
+                                                                De-activate
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
                                                     </div>
                                                 </div>
                                         </td>

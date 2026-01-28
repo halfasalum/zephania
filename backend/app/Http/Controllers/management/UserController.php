@@ -72,7 +72,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
 
-        return view('users.edit', compact('user', 'roles'));
+        return view('pages.management.users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
@@ -91,14 +91,24 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with([
+                'notify' => [
+                    'type' => 'success',
+                    'message' => 'User updated successfully!'
+                ]
+            ]);
     }
 
     public function activate(User $user)
     {
         $user->update(['is_active' => true]);
 
-        return back()->with('success', 'User activated');
+        return back()->with([
+            'notify' => [
+                'type' => 'success',
+                'message' => 'User activated successfully!'
+            ]
+        ]);
     }
 
     public function deactivate(User $user)
@@ -109,7 +119,12 @@ class UserController extends Controller
 
         $user->update(['is_active' => false]);
 
-        return back()->with('success', 'User deactivated');
+        return back()->with([
+            'notify' => [
+                'type' => 'success',
+                'message' => 'User deactivated successfully!'
+            ]
+        ]);
     }
 
     public function destroy(User $user)
@@ -120,6 +135,11 @@ class UserController extends Controller
 
         $user->delete();
 
-        return back()->with('success', 'User deleted');
+        return back()->with([
+            'notify' => [
+                'type' => 'success',
+                'message' => 'User deleted successfully!'
+            ]
+        ]);
     }
 }
