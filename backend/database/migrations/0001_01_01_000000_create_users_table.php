@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,6 +35,17 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+        });
+
+        Schema::create('audit_logs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('action');
+            $table->string('module')->nullable();
+            $table->ipAddress('ip_address')->nullable();
+            $table->text('user_agent')->nullable();
+            $table->json('payload')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'is_active',
+        'roles'
     ];
 
     /**
@@ -31,6 +34,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'roles'     => 'array',
     ];
 
     /**
@@ -44,5 +52,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+
+    public function hasRole(string $role): bool
+    {
+        return in_array($role, $this->roles ?? []);
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return count(array_intersect($roles, $this->roles ?? [])) > 0;
+    }
+
+    public function hasAllRoles(array $roles): bool
+    {
+        return empty(array_diff($roles, $this->roles ?? []));
     }
 }
