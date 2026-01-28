@@ -41,6 +41,15 @@ class AuthController extends Controller
             ]);
         }
 
+        // Check if user is active
+        $user = Auth::user();
+        if (!$user->is_active) {
+            Auth::logout(); // log them out immediately
+            throw ValidationException::withMessages([
+                'email' => 'Your account is inactive. Please contact the administrator.',
+            ]);
+        }
+
         RateLimiter::clear($key);
         $request->session()->regenerate();
 
