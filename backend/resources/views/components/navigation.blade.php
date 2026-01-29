@@ -4,7 +4,7 @@
                                 </li>
                                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Components</span></li>
                                 <li>
-                                    <a href="/management/dashboard"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Menus</span></a>
+                                    <a href="/menus"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Menus</span></a>
                                 </li>
                                 <li>
                                     <a href="/management/dashboard"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Services</span></a>

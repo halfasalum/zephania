@@ -4,6 +4,7 @@ use App\Http\Controllers\authentication\AuthController;
 use App\Http\Controllers\authentication\PasswordResetController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\Management\UserController;
+use App\Http\Controllers\Management\MenuController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');;
@@ -37,3 +38,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
+
+Route::middleware(['auth', 'role:admin,publisher,previewer'])->group(function () {
+    Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
+});
+Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
+
+    Route::get('/menus/create', [MenuController::class, 'create'])->name('menus.create');
+    Route::post('/menus', [MenuController::class, 'store'])->name('menus.store');
+
+    Route::get('/menus/{menu}/edit', [MenuController::class, 'edit'])->name('menus.edit');
+    Route::put('/menus/{menu}', [MenuController::class, 'update'])->name('menus.update');
+
+Route::patch('/menus/{menu}/activate', [MenuController::class, 'activate'])->name('menus.activate');
+    Route::patch('/menus/{menu}/deactivate', [MenuController::class, 'deactivate'])->name('menus.deactivate');
+});
+
+
+
