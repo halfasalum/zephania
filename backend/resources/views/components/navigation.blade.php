@@ -12,6 +12,10 @@
                                 <li>
                                     <a href="/management/dashboard"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">News</span></a>
                                 </li>
+<li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">PAGES ELEMENTS</span></li>
+                                <li>
+                                    <a href="/element/welcome-note"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Welcome note</span></a>
+                                </li>
                                 <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">MANAGEMENT</span></li>
                                 <li>
                                     <a href="/users"><i class="si si-users"></i><span class="sidebar-mini-hide">Users</span></a>

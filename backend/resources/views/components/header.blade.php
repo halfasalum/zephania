@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/select2-bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/js/plugins/simplemde/css/simplemde.min.css') }}">
 
         <!-- Stylesheets -->
         <!-- Codebase framework -->

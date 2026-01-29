@@ -5,6 +5,7 @@ use App\Http\Controllers\authentication\PasswordResetController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\MenuController;
+use App\Http\Controllers\Management\WelcomeNoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');;
@@ -42,6 +43,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin,publisher,previewer'])->group(function () {
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
 });
+
 Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::get('/menus/create', [MenuController::class, 'create'])->name('menus.create');
@@ -50,9 +52,9 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
     Route::get('/menus/{menu}/edit', [MenuController::class, 'edit'])->name('menus.edit');
     Route::put('/menus/{menu}', [MenuController::class, 'update'])->name('menus.update');
 
-Route::patch('/menus/{menu}/activate', [MenuController::class, 'activate'])->name('menus.activate');
+    Route::patch('/menus/{menu}/activate', [MenuController::class, 'activate'])->name('menus.activate');
     Route::patch('/menus/{menu}/deactivate', [MenuController::class, 'deactivate'])->name('menus.deactivate');
+
+    Route::get('/element/welcome-note', [WelcomeNoteController::class, 'create'])->name('welcome-note.create');
+    Route::post('/element/welcome-note', [WelcomeNoteController::class, 'store'])->name('welcome-note.store');
 });
-
-
-

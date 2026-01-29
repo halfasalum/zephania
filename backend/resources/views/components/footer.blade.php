@@ -19,10 +19,11 @@
 <script src="{{ asset('assets/js/plugins/select2/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/simplemde/js/simplemde.min.js')}}"></script>
 <script>
             jQuery(function () {
                 // Init page helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs plugins)
-                Codebase.helpers(['select2','notify']);
+                Codebase.helpers(['select2','notify','simplemde']);
 
             });
         </script>
