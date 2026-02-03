@@ -5,6 +5,7 @@ use App\Http\Controllers\authentication\PasswordResetController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\MenuController;
+use App\Http\Controllers\management\ServiceController;
 use App\Http\Controllers\Management\WelcomeNoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:admin,publisher,previewer'])->group(function () {
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 });
 
 Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
@@ -57,4 +59,7 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::get('/element/welcome-note', [WelcomeNoteController::class, 'create'])->name('welcome-note.create');
     Route::post('/element/welcome-note', [WelcomeNoteController::class, 'store'])->name('welcome-note.store');
+
+    Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create');
+    Route::post("/services", [ServiceController::class, 'store'])->name('services.store');
 });

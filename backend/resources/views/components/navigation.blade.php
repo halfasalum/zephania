@@ -7,12 +7,12 @@
                                     <a href="/menus"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Menus</span></a>
                                 </li>
                                 <li>
-                                    <a href="/management/dashboard"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Services</span></a>
+                                    <a href="/services"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Services</span></a>
                                 </li>
                                 <li>
                                     <a href="/management/dashboard"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">News</span></a>
                                 </li>
-<li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">PAGES ELEMENTS</span></li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">PAGES ELEMENTS</span></li>
                                 <li>
                                     <a href="/element/welcome-note"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Welcome note</span></a>
                                 </li>
