@@ -5,6 +5,7 @@ use App\Http\Controllers\authentication\PasswordResetController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\MenuController;
+use App\Http\Controllers\management\NewsController;
 use App\Http\Controllers\management\ServiceController;
 use App\Http\Controllers\Management\WelcomeNoteController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin,publisher,previewer'])->group(function () {
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 });
 
 Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
@@ -68,4 +70,15 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::patch('/services/{service}/activate', [ServiceController::class, 'activate'])->name('services.activate');
     Route::patch('/services/{service}/deactivate', [ServiceController::class, 'deactivate'])->name('services.deactivate');
+
+    Route::get("/news/create", [NewsController::class, 'create'])->name('news.create');
+    Route::post("/news", [NewsController::class, 'store'])->name('news.store');
+
+
+    Route::patch('/news/{news}/activate', [NewsController::class, 'activate'])->name('news.activate');
+    Route::patch('/news/{news}/deactivate', [NewsController::class, 'deactivate'])->name('news.deactivate');
+
+
+    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('/news/{news}', [NewsController::class, 'update'])->name('news.update');
 });

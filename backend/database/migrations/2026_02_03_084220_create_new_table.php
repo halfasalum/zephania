@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("title_sw");
             $table->text("content_en");
             $table->text("content_sw");
+            $table->date("news_date");
             $table->boolean("is_active")->nullable()->default(true);
             $table->timestamps();
         });
