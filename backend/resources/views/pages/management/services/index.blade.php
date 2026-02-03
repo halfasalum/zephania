@@ -8,7 +8,7 @@
                                     <div class="float-right mt-15 d-none d-sm-block">
                                         <i class="si si-users fa-2x text-primary-light"></i>
                                     </div>
-                                    <div class="font-size-h3 font-w600 text-primary" data-toggle="countTo" data-speed="1000" data-to="{{ $users->count() }}">0</div>
+                                    <div class="font-size-h3 font-w600 text-primary" data-toggle="countTo" data-speed="1000" data-to="{{ $services->count() }}">0</div>
                                     <div class="font-size-sm font-w600 text-uppercase text-muted">All Service</div>
                                 </div>
                             </a>
@@ -19,7 +19,7 @@
                                     <div class="float-right mt-15 d-none d-sm-block">
                                         <i class="si si-check fa-2x text-success"></i>
                                     </div>
-                                    <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="{{ $activeUsers }}">0</div>
+                                    <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="{{ $activeServices }}">0</div>
                                     <div class="font-size-sm font-w600 text-uppercase text-muted">Active Service</div>
                                 </div>
                             </a>
@@ -30,7 +30,7 @@
                                     <div class="float-right mt-15 d-none d-sm-block">
                                         <i class="si si-ban fa-2x text-danger"></i>
                                     </div>
-                                    <div class="font-size-h3 font-w600 text-danger" data-toggle="countTo" data-speed="1000" data-to="{{ $inactiveUsers }}">0</div>
+                                    <div class="font-size-h3 font-w600 text-danger" data-toggle="countTo" data-speed="1000" data-to="{{ $inactiveServices }}">0</div>
                                     <div class="font-size-sm font-w600 text-uppercase text-muted">Inactive Service</div>
                                 </div>
                             </a>
@@ -52,30 +52,25 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th>Name</th>
-                                        <th class="d-none d-sm-table-cell">Email</th>
-                                        <th class="d-none d-sm-table-cell" >Roles</th>
+                                        <th>Header</th>
+                                        <th class="d-none d-sm-table-cell">Sub-header</th>
+                                        <th class="d-none d-sm-table-cell" >Icon</th>
                                         <th class="d-none d-sm-table-cell" >Status</th>
                                         <th class="text-center" ></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-@foreach($users as $index => $user)
+@foreach($services as $index => $service)
                                     <tr>
                                         <td class="text-center">{{ $index + 1 }}</td>
-                                        <td class="font-w600">{{ $user->name }}</td>
-                                        <td class="d-none d-sm-table-cell">{{ $user->email }}</td>
+                                        <td class="font-w600">{{ $service->header_en }}</td>
+                                        <td class="d-none d-sm-table-cell">{{ $service->sub_header_en }}</td>
                                         <td class="d-none d-sm-table-cell">
-                                            @if(sizeof($user->roles) > 0 )
-                                                @foreach($user->roles as $role)
-                                                    <span class="badge badge-info">{{ $role }}</span>&nbsp;
-                                                @endforeach
-                                            @else
-                                                <span class="badge badge-secondary">No Role</span>
-                                            @endif
+                                            {{ $service->icon }}
                                         </td>
+
                                         <td class="d-none d-sm-table-cell">
-                                            @if($user->is_active)
+                                            @if($service->is_active)
                                                 <span class="badge badge-success">Active</span>
                                             @else
                                                 <span class="badge badge-danger">Inactive</span>
@@ -85,11 +80,11 @@
                                             <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
+                                                        <a class="dropdown-item" href="{{ route('services.edit', $service->id) }}">
                                                             Edit
                                                         </a>
-                                                      @if(!$user->is_active)
-                                                        <form action="{{ route('users.activate', $user->id) }}" method="POST">
+                                                      @if(!$service->is_active)
+                                                        <form action="{{ route('services.activate', $service->id) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
                                                             <button type="submit" class="dropdown-item bg-success text-white">
@@ -98,8 +93,8 @@
                                                         </form>
                                                     @endif
 
-                                                    @if($user->is_active)
-                                                        <form action="{{ route('users.deactivate', $user->id) }}" method="POST">
+                                                    @if($service->is_active)
+                                                        <form action="{{ route('services.deactivate', $service->id) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
                                                             <button type="submit" class="dropdown-item bg-danger text-white">

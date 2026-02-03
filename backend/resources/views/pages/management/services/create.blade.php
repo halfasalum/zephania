@@ -7,7 +7,7 @@
 
                         </div>
                         <div class="block-content">
-                            <form action="{{ route('users.store') }}" method="post" >
+                            <form action="{{ route('services.store') }}" method="post" >
 @csrf
                                 <div class="row">
                                     <div class="col-md-3">
@@ -58,13 +58,20 @@
                                             </div>
                                         </div>
                                     </div>
-<div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
                                             <div class="col-12">
                                                 <label for="mega-roles">Icon</label>
-                                                <select class="js-select2 form-control form-control-sm" id="example-select2" name="roles[]" style="width: 100%;" data-placeholder="Choose .." multiple>
+                                                <select class="js-select2 form-control form-control-sm" id="example-select2" name="icon" style="width: 100%;" data-placeholder="Choose ..">
                                                     <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-
+                                                    <option value="tax-planning.svg">Tax planning</option>
+                                                    <option value="tax-2.svg">Tax 2</option>
+                                                    <option value="tax-3.svg">Tax 3</option>
+                                                    <option value="tax-4.svg">Tax 4</option>
+                                                    <option value="tax-5.svg">Tax 5</option>
+                                                    <option value="tax-6.svg">Tax 6</option>
+                                                    <option value="audit.svg">Audit</option>
+                                                    <option value="investment.svg">Investment</option>
                                                 </select>
                                             </div>
                                         </div>
