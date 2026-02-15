@@ -3,11 +3,14 @@
 use App\Http\Controllers\authentication\AuthController;
 use App\Http\Controllers\authentication\PasswordResetController;
 use App\Http\Controllers\management\DashboardController;
+use App\Http\Controllers\management\ExpertsController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\MenuController;
 use App\Http\Controllers\management\NewsController;
+use App\Http\Controllers\management\PageStatsController;
 use App\Http\Controllers\management\ServiceController;
 use App\Http\Controllers\Management\WelcomeNoteController;
+use App\Http\Controllers\management\WhyUsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');;
@@ -44,6 +47,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:admin,publisher,previewer'])->group(function () {
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
+    Route::get('/experts', [ExpertsController::class, 'index'])->name('experts.index');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 });
@@ -61,6 +65,8 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::get('/element/welcome-note', [WelcomeNoteController::class, 'create'])->name('welcome-note.create');
     Route::post('/element/welcome-note', [WelcomeNoteController::class, 'store'])->name('welcome-note.store');
+    Route::get('/element/why-us', [WhyUsController::class, 'create'])->name('why.index');
+    Route::post('/element/why-us', [WhyUsController::class, 'store'])->name('why.store');
 
     Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create');
     Route::post("/services", [ServiceController::class, 'store'])->name('services.store');
@@ -81,4 +87,16 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
     Route::put('/news/{news}', [NewsController::class, 'update'])->name('news.update');
+
+    Route::get('/element/stats', [PageStatsController::class, 'create'])->name('stats.create');
+    Route::post('/element/stats', [PageStatsController::class, 'store'])->name('stats.store');
+
+    Route::get('/experts/create', [ExpertsController::class, 'create'])->name('experts.create');
+    Route::post('/experts', [ExpertsController::class, 'store'])->name('experts.store');
+
+    Route::get('/experts/{expert}/edit', [ExpertsController::class, 'edit'])->name('expert.edit');
+    Route::put('/experts/{expert}', [ExpertsController::class, 'update'])->name('expert.update');
+
+    Route::patch('/experts/{menu}/activate', [ExpertsController::class, 'activate'])->name('experts.activate');
+    Route::patch('/experts/{menu}/deactivate', [ExpertsController::class, 'deactivate'])->name('experts.deactivate');
 });

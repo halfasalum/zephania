@@ -1,0 +1,1 @@
+export const PUBLIC_API_PATH = "http://localhost:8001/";

@@ -71,55 +71,12 @@
                     </div>
                     <div class="collapse navbar-collapse" id="main_nav">
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Home</a>
-                                <ul class="dropdown-menu fade-down">
-                                    <li><a class="dropdown-item" href="index.html">Home Page 01</a></li>
-                                    <li><a class="dropdown-item" href="index-2.html">Home Page 02</a></li>
-                                    <li><a class="dropdown-item" href="index-3.html">Home Page 03</a></li>
-                                    <li><a class="dropdown-item" href="index-4.html">Home Page 04</a></li>
-                                    <li><a class="dropdown-item" href="index-5.html">Home Page 05</a></li>
-                                </ul>
+                            <li v-for="menu in menus" :key="menu.id" class="nav-item">
+                                <a class="nav-link" :href="menu.menu_path">{{ menu.name }}</a>
                             </li>
+                            
                             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
-                                <ul class="dropdown-menu fade-down">
-                                    <li><a class="dropdown-item" href="service.html">Services One</a></li>
-                                    <li><a class="dropdown-item" href="service-2.html">Services Two</a></li>
-                                    <li><a class="dropdown-item" href="service-single.html">Service Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
-                                <ul class="dropdown-menu fade-down">
-                                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                                    <li><a class="dropdown-item" href="team.html">Our Team</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="login.html">Login</a></li>
-                                            <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                            <li><a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle" href="#">Extra Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="404.html">404 Error</a></li>
-                                            <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-                                            <li><a class="dropdown-item" href="terms.html">Terms Of Service</a></li>
-                                            <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
-                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                                    <li><a class="dropdown-item" href="pricing.html">Pricing Plan</a></li>
-                                    <li><a class="dropdown-item" href="faq.html">Faq's</a></li>
-                                    <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
-                                </ul>
-                            </li>
+                          
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Case Study</a>
                                 <ul class="dropdown-menu fade-down">
@@ -301,3 +258,23 @@
 
 </body>
 </template>
+<script setup>
+import api from "@/api/axios";
+import { ref, onMounted } from "vue";
+const menus = ref([]);
+const loading = ref(false);
+
+const loadMenus = async () => {
+  loading.value = true;
+  try {
+    const res = await api.get("/menus");
+    menus.value = res.data;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(loadMenus);
+</script>
