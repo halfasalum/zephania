@@ -10,7 +10,6 @@
           <div class="row align-items-center">
             <div class="col-md-12 col-lg-6">
               <div class="hero-content">
-                
                 <h1
                   class="hero-title"
                   data-animation="fadeInRight"
@@ -21,21 +20,22 @@
                 <p data-animation="fadeInLeft" data-delay=".75s">
                   {{ welcome_note.content }}
                 </p>
-                
               </div>
               <div class="partner-area pa-1 mt-50">
                 <div class="partner-content">
                   <h6>
-                    Trusted by more than <span>300+</span> companies worldwide
+                    {{ t("trusted") }}
                   </h6>
-                  
                 </div>
               </div>
             </div>
             <div class="col-md-12 col-lg-6">
               <div class="hero-img-wrap">
                 <div class="hero-img">
-                  <img :src="PUBLIC_API_PATH + 'storage/' + welcome_note.image" alt="" />
+                  <img
+                    :src="PUBLIC_API_PATH + 'storage/' + welcome_note.image"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -51,15 +51,23 @@
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="about-left wow fadeInLeft" data-wow-delay=".25s">
-              <div class="about-img">
-                <img class="img-1" src="/assets/img/about/01.jpg" alt="" />
-                <img class="img-2" src="/assets/img/about/02.jpg" alt="" />
+              <div class="xabout-img choose-img">
+                <img
+                  class="img-1"
+                  :src="PUBLIC_API_PATH + 'storage/' + aboutUs.image_back"
+                  alt=""
+                />
+                <img
+                  class="img-2"
+                  :src="PUBLIC_API_PATH + 'storage/' + aboutUs.image_front"
+                  alt=""
+                />
                 <div class="about-img-shape">
                   <img src="/assets/img/shape/06.png" alt="" />
                 </div>
               </div>
               <div class="about-experience">
-                <span>30</span>
+                <span>{{ aboutUs.experience }}</span>
                 <h5>
                   Years Of <br />
                   Experience
@@ -71,16 +79,14 @@
             <div class="about-right wow fadeInUp" data-wow-delay=".25s">
               <div class="site-heading mb-3">
                 <span class="site-title-tagline"
-                  ><i class="fas fa-percent"></i> About Us</span
+                  ><i class="fas fa-percent"></i> {{ t('about_us') }}</span
                 >
                 <h2 class="site-title">
-                  Maximize your tax and savings with us
+                  {{ aboutUs.header }}
                 </h2>
               </div>
               <p class="about-text">
-                There are many variations of passages available but the majority
-                have suffered alteration in some form, by injected humour, or
-                randomised words which don't look even slightly believable.
+                {{ aboutUs.contents }}
               </p>
               <div class="about-list-wrap">
                 <ul class="about-list">
@@ -89,8 +95,8 @@
                       <img src="/assets/img/icon/rating-2.svg" alt="" />
                     </div>
                     <div class="content">
-                      <h4>Clients Satisfaction</h4>
-                      <p>Take a look at our round up of the best shows.</p>
+                      <h4>{{ aboutUs.item1_header }}</h4>
+                      <p>{{ aboutUs.item1_subheader }}</p>
                     </div>
                   </li>
                   <li>
@@ -98,9 +104,9 @@
                       <img src="/assets/img/icon/team.svg" alt="" />
                     </div>
                     <div class="content">
-                      <h4>Professional Team</h4>
+                      <h4>{{ aboutUs.item2_header }}</h4>
                       <p>
-                        It has survived words which not only five centuries.
+                        {{ aboutUs.item2_subheader }}
                       </p>
                     </div>
                   </li>
@@ -117,48 +123,60 @@
     <!-- about area end -->
 
     <!-- service-area -->
-        <div class="service-area bg py-90">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="site-heading text-center wow fadeInDown" data-wow-delay=".25s">
-                            <span class="site-title-tagline light"><i class="fas fa-percent"></i> Our Services</span>
-                            <h2 class="site-title">What We Offers To Our <span>Customers</span></h2>
-                            <div class="heading-divider"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-4">
-                    <div v-for="service in our_service" :key="service.id" class="col-md-6 col-lg-3">
-                        <div class="service-item wow fadeInUp" data-wow-delay=".25s">
-                            <div class="service-shape">
-                                <img src="/assets/img/shape/07.png" alt="">
-                            </div>
-                            <div class="service-icon">
-                                <img src="/assets/img/icon/tax-planning.svg" alt="">
-                            </div>
-                            <div class="service-content">
-                                <h3 class="service-title">
-                                    <a href="service-single.html">{{ service.header }}</a>
-                                </h3>
-                                <p class="service-text">
-                                    {{ service.subheader }}
-                                </p>
-                                <div class="service-arrow">
-                                    <a href="service-single.html" class="theme-btn">Read More<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                  
-                </div>
-                <div class="text-center mt-60 wow fadeInUp" data-wow-delay=".25s">
-                    <a href="service.html" class="theme-btn">View All Services<i class="fas fa-arrow-right"></i></a>
-                </div>
+    <div class="service-area bg py-90">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mx-auto">
+            <div
+              class="site-heading text-center wow fadeInDown"
+              data-wow-delay=".25s"
+            >
+              <span class="site-title-tagline light"
+                ><i class="fas fa-percent"></i> {{  t('our_service') }}</span
+              >
+              <h2 class="site-title">
+                {{ t('what_we_offer') }}
+              </h2>
+              <div class="heading-divider"></div>
             </div>
+          </div>
         </div>
+        <div class="row g-4">
+          <div
+            v-for="service in our_service"
+            :key="service.id"
+            class="col-md-6 col-lg-3"
+          >
+            <div class="service-item wow fadeInUp" data-wow-delay=".25s">
+              <div class="service-shape">
+                <img src="/assets/img/shape/07.png" alt="" />
+              </div>
+              <div class="service-icon">
+                <img src="/assets/img/icon/tax-planning.svg" alt="" />
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">
+                  <a href="service-single.html">{{ service.header }}</a>
+                </h3>
+                <p class="service-text">
+                  {{ service.subheader }}
+                </p>
+                <div class="service-arrow">
+                  <a href="service-single.html" class="theme-btn"
+                    >Read More<i class="fas fa-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-60 wow fadeInUp" data-wow-delay=".25s">
+          <a href="service.html" class="theme-btn"
+            >View All Services<i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </div>
     <!-- service-area -->
 
     <!-- choose area -->
@@ -169,13 +187,13 @@
             <div class="choose-content wow fadeInUp" data-wow-delay=".25s">
               <div class="site-heading mb-0">
                 <span class="site-title-tagline"
-                  ><i class="fas fa-percent"></i> Why Choose Us</span
+                  ><i class="fas fa-percent"></i> {{ t('what_us') }}</span
                 >
                 <h2 class="site-title">
                   {{ whyUs.header }}
                 </h2>
                 <p>
-                 {{whyUs.subheader}}
+                  {{ whyUs.subheader }}
                 </p>
               </div>
               <div class="choose-content-wrap">
@@ -186,7 +204,7 @@
                   <div class="choose-item-info">
                     <h4>{{ whyUs.item1_header }}</h4>
                     <p>
-                     {{ whyUs.item1_subheader }}
+                      {{ whyUs.item1_subheader }}
                     </p>
                   </div>
                 </div>
@@ -217,8 +235,16 @@
           </div>
           <div class="col-lg-6">
             <div class="choose-img wow fadeInRight" data-wow-delay=".25s">
-              <img class="img-1" :src="PUBLIC_API_PATH+'storage/'+ whyUs.image_back" alt="" />
-              <img class="img-2" :src="PUBLIC_API_PATH+'storage/'+ whyUs.image_front" alt="" />
+              <img
+                class="img-1"
+                :src="PUBLIC_API_PATH + 'storage/' + whyUs.image_back"
+                alt=""
+              />
+              <img
+                class="img-2"
+                :src="PUBLIC_API_PATH + 'storage/' + whyUs.image_front"
+                alt=""
+              />
               <img class="img-shape" src="/assets/img/shape/10.png" alt="" />
             </div>
           </div>
@@ -251,7 +277,7 @@
                   >
                   <span class="unit">+</span>
                 </div>
-                <h6 class="title">Projects Done</h6>
+                <h6 class="title">{{ t('project_done') }}</h6>
               </div>
             </div>
           </div>
@@ -271,7 +297,7 @@
                   >
                   <span class="unit">+</span>
                 </div>
-                <h6 class="title">Happy Clients</h6>
+                <h6 class="title">{{ t('happy_clients') }}</h6>
               </div>
             </div>
           </div>
@@ -291,7 +317,7 @@
                   >
                   <span class="unit">+</span>
                 </div>
-                <h6 class="title">Experts Staff</h6>
+                <h6 class="title">{{ t('experts_staff') }}</h6>
               </div>
             </div>
           </div>
@@ -311,7 +337,7 @@
                   >
                   <span class="unit">+</span>
                 </div>
-                <h6 class="title">Win Awards</h6>
+                <h6 class="title">{{ t('win_awards') }}</h6>
               </div>
             </div>
           </div>
@@ -330,17 +356,24 @@
               data-wow-delay=".25s"
             >
               <span class="site-title-tagline"
-                ><i class="fas fa-percent"></i> Our Team</span
+                ><i class="fas fa-percent"></i> {{ t('our_team') }}</span
               >
-              <h2 class="site-title">Meet With Our <span>Experts</span></h2>
+              <h2 class="site-title">{{ t('our_expert') }}</h2>
             </div>
           </div>
         </div>
         <div class="row g-4">
-          <div class="col-md-6 col-lg-3" v-for="expert in experts" :key="expert.id">
+          <div
+            class="col-md-6 col-lg-3"
+            v-for="expert in experts"
+            :key="expert.id"
+          >
             <div class="team-item wow fadeInUp" data-wow-delay=".25s">
               <div class="team-img">
-                <img :src="PUBLIC_API_PATH + 'storage/' + expert.image_path" alt="thumb" />
+                <img
+                  :src="PUBLIC_API_PATH + 'storage/' + expert.image_path"
+                  alt="thumb"
+                />
                 <div class="team-social-wrap">
                   <div class="team-social-btn">
                     <button type="button">
@@ -356,7 +389,9 @@
                 </div>
               </div>
               <div class="team-content">
-                <h4><a href="#">{{ expert.name }}</a></h4>
+                <h4>
+                  <a href="#">{{ expert.name }}</a>
+                </h4>
                 <span>{{ expert.designation }}</span>
               </div>
             </div>
@@ -376,9 +411,9 @@
               data-wow-delay=".25s"
             >
               <span class="site-title-tagline"
-                ><i class="fas fa-percent"></i> Our Updates</span
+                ><i class="fas fa-percent"></i> {{ t('our_updates') }}</span
               >
-              <h2 class="site-title"> Latest News </h2>
+              <h2 class="site-title">{{ t('latest_news') }}</h2>
             </div>
           </div>
         </div>
@@ -386,20 +421,21 @@
           <div class="col-md-6 col-lg-4" v-for="item in news" :key="item.date">
             <div class="blog-item wow fadeInUp" data-wow-delay=".25s">
               <div class="blog-item-img">
-                <img :src="PUBLIC_API_PATH + 'uploads/news/'+item.image" alt="Thumb" />
+                <img
+                  :src="PUBLIC_API_PATH + 'uploads/news/' + item.image"
+                  alt="Thumb"
+                />
                 <div class="blog-date">
                   <strong>{{ getDay(item.date) }}</strong>
-                  <span>{{getMonthShort(item.date)}}</span>
+                  <span>{{ getMonthShort(item.date) }}</span>
                 </div>
               </div>
               <div class="blog-item-info">
                 <h4 class="blog-title">
-                  <a href="blog-single.html"
-                    >{{item.title}}</a
-                  >
+                  <a href="blog-single.html">{{ item.title }}</a>
                 </h4>
                 <p>
-                  {{item.content}}
+                  {{ item.content }}
                 </p>
                 <a class="theme-btn" href="blog-single.html"
                   >Read More<i class="fas fa-arrow-right"></i
@@ -417,7 +453,9 @@
 import api from "@/api/axios";
 import { ref, onMounted } from "vue";
 import { PUBLIC_API_PATH } from "../config";
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n();
 
 const welcome_note = ref([]);
 const loading = ref(false);
@@ -443,12 +481,11 @@ const getMonthLong = (dateString) => {
   return date.toLocaleString("en-US", { month: "long" }); // "January", "February"
 };
 
-
 const welcomeNote = async () => {
   loading.value = true;
   try {
     const res = await api.get("/welcome-note");
-    welcome_note.value = res.data;  
+    welcome_note.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -461,20 +498,7 @@ const services = async () => {
   loading.value = true;
   try {
     const res = await api.get("/services");
-    our_service.value = res.data;  
-  } catch (err) {
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
-
-const testimonials = ref([]);
-const testimonialsData = async () => {
-  loading.value = true;
-  try {
-    const res = await api.get("/testimonials");
-    testimonials.value = res.data;  
+    our_service.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -487,7 +511,7 @@ const newsData = async () => {
   loading.value = true;
   try {
     const res = await api.get("/news");
-    news.value = res.data;  
+    news.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -500,7 +524,7 @@ const statsData = async () => {
   loading.value = true;
   try {
     const res = await api.get("/stats");
-    stats.value = res.data;  
+    stats.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -513,7 +537,7 @@ const expertsData = async () => {
   loading.value = true;
   try {
     const res = await api.get("/experts");
-    experts.value = res.data;  
+    experts.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -526,7 +550,20 @@ const whyUsData = async () => {
   loading.value = true;
   try {
     const res = await api.get("/why-us");
-    whyUs.value = res.data;  
+    whyUs.value = res.data;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
+};
+
+const aboutUs = ref([]);
+const aboutUsData = async () => {
+  loading.value = true;
+  try {
+    const res = await api.get("/about-us");
+    aboutUs.value = res.data;
   } catch (err) {
     console.error(err);
   } finally {
@@ -540,6 +577,5 @@ onMounted(newsData);
 onMounted(statsData);
 onMounted(expertsData);
 onMounted(whyUsData);
-
+onMounted(aboutUsData);
 </script>
-

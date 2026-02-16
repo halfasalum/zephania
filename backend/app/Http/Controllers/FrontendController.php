@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
+use App\Models\GeneralInfo;
 use App\Models\Menu;
 use App\Models\News;
 use App\Models\PageStats;
@@ -136,5 +138,37 @@ class FrontendController extends Controller
             ->first();
 
         return response()->json($whyus);
+    }
+    public function aboutUs(Request $request)
+    {
+        $lang = $request->get('lang', 'en'); // default en
+
+        $headerColumn = $lang === 'sw' ? 'header_sw' : 'header_en';
+        $contentsColumn = $lang === 'sw' ? 'contents_sw' : 'contents_en';
+        $item1headerColumn = $lang === 'sw' ? 'item1_header_sw' : 'item1_header_en';
+        $item1subheaderColumn = $lang === 'sw' ? 'item1_subheader_sw' : 'item1_subheader_en';
+        $item2headerColumn = $lang === 'sw' ? 'item2_header_sw' : 'item2_header_en';
+        $item2subheaderColumn = $lang === 'sw' ? 'item2_subheader_sw' : 'item2_subheader_en';
+
+        $aboutus = AboutUs::select([
+            "$headerColumn as header",
+            "$contentsColumn as contents",
+            "$item1headerColumn as item1_header",
+            "$item1subheaderColumn as item1_subheader",
+            "$item2headerColumn as item2_header",
+            "$item2subheaderColumn as item2_subheader",
+            "experience",
+            "image_front",
+            "image_back"
+        ])
+            ->first();
+
+        return response()->json($aboutus);
+    }
+
+    public function generalIfo(Request $request)
+    {
+        $stats = GeneralInfo::first();
+        return response()->json($stats);
     }
 }

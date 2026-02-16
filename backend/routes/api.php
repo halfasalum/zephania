@@ -13,3 +13,5 @@ Route::get('/news', [FrontendController::class, 'news']);
 Route::get('/stats', [FrontendController::class, 'page_stats']);
 Route::get('/experts', [ExpertsController::class, 'list']);
 Route::get('/why-us', [FrontendController::class, 'whyUs']);
+Route::get('/about-us', [FrontendController::class, 'aboutUs']);
+Route::get('/general', [FrontendController::class, 'generalIfo']);

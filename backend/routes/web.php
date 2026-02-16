@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\authentication\AuthController;
 use App\Http\Controllers\authentication\PasswordResetController;
+use App\Http\Controllers\management\AboutUsController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\management\ExpertsController;
+use App\Http\Controllers\management\GeneralInfoControler;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\MenuController;
 use App\Http\Controllers\management\NewsController;
@@ -65,8 +67,15 @@ Route::middleware(['auth', 'role:admin,publisher'])->group(function () {
 
     Route::get('/element/welcome-note', [WelcomeNoteController::class, 'create'])->name('welcome-note.create');
     Route::post('/element/welcome-note', [WelcomeNoteController::class, 'store'])->name('welcome-note.store');
+
     Route::get('/element/why-us', [WhyUsController::class, 'create'])->name('why.index');
     Route::post('/element/why-us', [WhyUsController::class, 'store'])->name('why.store');
+
+    Route::get('/element/about-us', [AboutUsController::class, 'create'])->name('about.index');
+    Route::post('/element/about-us', [AboutUsController::class, 'store'])->name('about.store');
+
+    Route::get('/element/general', [GeneralInfoControler::class, 'create'])->name('general.index');
+    Route::post('/element/general', [GeneralInfoControler::class, 'store'])->name('general.store');
 
     Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create');
     Route::post("/services", [ServiceController::class, 'store'])->name('services.store');

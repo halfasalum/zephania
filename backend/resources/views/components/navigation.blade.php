@@ -23,7 +23,13 @@
                                     <a href="/element/why-us"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Why Us</span></a>
                                 </li>
                                 <li>
+                                    <a href="/element/about-us"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">About Us</span></a>
+                                </li>
+                                <li>
                                     <a href="/element/stats"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">Page stats</span></a>
+                                </li>
+                                <li>
+                                    <a href="/element/general"><i class="si si-folder-alt"></i><span class="sidebar-mini-hide">General Info</span></a>
                                 </li>
                                 <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">MANAGEMENT</span></li>
                                 <li>
