@@ -111,7 +111,7 @@
             <div class="collapse navbar-collapse" id="main_nav">
               <ul class="navbar-nav">
                 <li v-for="menu in menus" :key="menu.id" class="nav-item">
-                  <a class="nav-link" :href="menu.menu_path">{{ menu.name }}</a>
+                  <router-link class="nav-link" :to="menu.menu_path">{{ menu.name }}</router-link>
                 </li>
               </ul>
               <div class="nav-right">

@@ -3,12 +3,13 @@ import { createI18n } from 'vue-i18n'
 const messages = {
   en: {
     about_us: "About Us",
+    home: "Home",
     trusted: "Trusted by more than 10+ companies worldwide",
     our_service: "Our Services",
     what_we_offer: "What We Offers To Our Customers",
     what_us: "Why Choose Us",
     our_team: "Our Team",
-    our_expert: "Kutana na Wataalamu Wetu",
+    our_expert: "Meet With Our Experts",
     our_updates: "Our Updates",
     latest_news: "Latest News",
     project_done: "Projects Done",
@@ -23,9 +24,12 @@ const messages = {
     call_us: "Call Us",
     mail_us: "Mail Us",
     copyright: " Copyright Abecilia All Rights Reserved.",
+    opening: "Open Time",
+    contact_us: "Contact Us"
   },
   sw: {
     about_us: "Kuhusu sisi",
+    home: "Mwanzo",
     trusted: "Inaaminiwa na zaidi ya kampuni 10 duniani kote",
     our_service: "Huduma zetu",
     what_we_offer: "Tunachowapa Wateja Wetu",
@@ -46,6 +50,8 @@ const messages = {
     call_us: "Tupigie",
     mail_us: "Wasiliana nasi",
     copyright: " Abicelia Haki Zote Zimehifadhiwa.",
+    opening: "Ofisi kuwa wazi",
+    contact_us: "Wasiliana Nasi"
   }
 }
 
