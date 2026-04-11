@@ -22,7 +22,7 @@ class NewsController extends Controller
         return view('pages.management.news.create');
     }
 
-public function store(Request $request)
+    public function store(Request $request)
     {
         // Validate the input
         $validated = $request->validate([
@@ -62,7 +62,7 @@ public function store(Request $request)
         ]);
     }
 
-// Show the edit form
+    // Show the edit form
     public function edit(News $news)
     {
         return view('pages.management.news.edit', compact('news'));
@@ -129,4 +129,6 @@ public function store(Request $request)
             ]
         ]);
     }
+
+
 }

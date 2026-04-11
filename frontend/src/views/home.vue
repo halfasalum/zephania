@@ -4,7 +4,7 @@
     <div class="hero-section hs-1">
       <div class="hero-single">
         <div class="hero-shape">
-          <img src="/assets/img/shape/02.png" alt="" />
+          <img :src="PUBLIC_API_PATH + 'storage/assets/img/shape/02.png'" alt="" />
         </div>
         <div class="container">
           <div class="row align-items-center">
@@ -156,13 +156,13 @@
               </div>
               <div class="service-content">
                 <h3 class="service-title">
-                  <a href="service-single.html">{{ service.header }}</a>
+                  <a href="#" @click.prevent="openServiceDetails(service.id)">{{ service.header }}</a>
                 </h3>
                 <p class="service-text">
                   {{ service.subheader }}
                 </p>
                 <div class="service-arrow">
-                  <a href="service-single.html" class="theme-btn"
+                  <a href="#" @click.prevent="openServiceDetails(service.id)" class="theme-btn"
                     >Read More<i class="fas fa-arrow-right"></i
                   ></a>
                 </div>
@@ -437,7 +437,7 @@
                 <p>
                   {{ item.content }}
                 </p>
-                <a class="theme-btn" href="blog-single.html"
+                <a href="#" @click.prevent="openNewsDetails(item.id)" class="theme-btn"
                   >Read More<i class="fas fa-arrow-right"></i
                 ></a>
               </div>
@@ -453,9 +453,21 @@
 import api from "@/api/axios";
 import { ref, onMounted } from "vue";
 import { PUBLIC_API_PATH } from "../config";
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
+const router = useRouter();
+
+const openNewsDetails = (id) => {
+    localStorage.setItem('selected_news_id', id);
+    router.push({ name: 'NewsDetails' });
+};
+
+const openServiceDetails = (id) => {
+    localStorage.setItem('selected_service_id', id);
+    router.push({ name: 'ServiceDetails' });
+};
 
 const welcome_note = ref([]);
 const loading = ref(false);

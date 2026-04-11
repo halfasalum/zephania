@@ -25,7 +25,11 @@ const messages = {
     mail_us: "Mail Us",
     copyright: " Copyright Abecilia All Rights Reserved.",
     opening: "Open Time",
-    contact_us: "Contact Us"
+    contact_us: "Contact Us",
+    news: "News",
+    news_details: "News Details",
+    recent_post: "Recent Post",
+    
   },
   sw: {
     about_us: "Kuhusu sisi",
@@ -51,9 +55,15 @@ const messages = {
     mail_us: "Wasiliana nasi",
     copyright: " Abicelia Haki Zote Zimehifadhiwa.",
     opening: "Ofisi kuwa wazi",
-    contact_us: "Wasiliana Nasi"
+    contact_us: "Wasiliana Nasi",
+    news: "Habari",
+    news_details: "Habari Mpya",
+    recent_post: "Habari Mpya",
   }
 }
+
+//command to build localization files
+// npx vue-i18n-extract --output ./src/locales --add-missing --add-missing-key
 
 // ✅ Read saved language
 const savedLang = localStorage.getItem("lang") || "en"

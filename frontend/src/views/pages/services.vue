@@ -49,13 +49,13 @@
               </div>
               <div class="service-content">
                 <h3 class="service-title">
-                  <a href="service-single.html">{{ service.header }}</a>
+                  <a href="#" @click.prevent="openServiceDetails(service.id)">{{ service.header }}</a>
                 </h3>
                 <p class="service-text">
                   {{ service.subheader }}
                 </p>
                 <div class="service-arrow">
-                  <a href="service-single.html" class="theme-btn"
+                  <a href="#" @click.prevent="openServiceDetails(service.id)" class="theme-btn"
                     >Read More<i class="fas fa-arrow-right"></i
                   ></a>
                 </div>
@@ -76,8 +76,10 @@ import api from "@/api/axios";
 import { ref, onMounted } from "vue";
 import { PUBLIC_API_PATH } from "@/config";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 
 const { t } = useI18n();
+const router = useRouter();
 const loading = ref(false);
 
 const CACHE_MINUTES = 5;
@@ -111,6 +113,11 @@ const fetchWithCache = async (endpoint, refVar) => {
 
 const our_service = ref([]);
 const services = () => fetchWithCache("/services", our_service);
+
+const openServiceDetails = (id) => {
+    localStorage.setItem('selected_service_id', id);
+    router.push({ name: 'ServiceDetails' });
+};
 
 onMounted(services);
 </script>

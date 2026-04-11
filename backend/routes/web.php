@@ -6,12 +6,12 @@ use App\Http\Controllers\management\AboutUsController;
 use App\Http\Controllers\management\DashboardController;
 use App\Http\Controllers\management\ExpertsController;
 use App\Http\Controllers\management\GeneralInfoControler;
-use App\Http\Controllers\Management\UserController;
-use App\Http\Controllers\Management\MenuController;
+use App\Http\Controllers\management\UserController;
+use App\Http\Controllers\management\MenuController;
 use App\Http\Controllers\management\NewsController;
 use App\Http\Controllers\management\PageStatsController;
 use App\Http\Controllers\management\ServiceController;
-use App\Http\Controllers\Management\WelcomeNoteController;
+use App\Http\Controllers\management\WelcomeNoteController;
 use App\Http\Controllers\management\WhyUsController;
 use Illuminate\Support\Facades\Route;
 

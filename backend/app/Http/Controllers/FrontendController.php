@@ -55,6 +55,7 @@ class FrontendController extends Controller
         $subheaderColumn = $lang === 'sw' ? 'sub_header_sw' : 'sub_header_en';
 
         $services = Service::select([
+            "id",
             "$headerColumn as header",
             "$subheaderColumn as subheader",
             "icon"
@@ -63,6 +64,29 @@ class FrontendController extends Controller
             ->get();
 
         return response()->json($services);
+    }
+
+    public function service_detail(Request $request)
+    {
+        $lang = $request->get('lang', 'en'); // default en
+        $service_id = $request->route('service_id') ?? $request->get('service_id', '');
+
+        $headerColumn = $lang === 'sw' ? 'header_sw' : 'header_en';
+        $subheaderColumn = $lang === 'sw' ? 'sub_header_sw' : 'sub_header_en';
+        $descriptionColumn = $lang === 'sw' ? 'description_sw' : 'description_en';
+
+        $service = Service::select([
+            "id",
+            "$headerColumn as header",
+            "$subheaderColumn as subheader",
+            "$descriptionColumn as description",
+            "icon"
+        ])
+            ->where('is_active', true)
+            ->where('id', $service_id)
+            ->first();
+
+        return response()->json($service);
     }
 
     public function testimonials(Request $request)
@@ -93,13 +117,36 @@ class FrontendController extends Controller
         $contentColumn = $lang === 'sw' ? 'content_sw' : 'content_en';
 
         $news = News::select([
+            "id",
             "$titleColumn as title",
             "$contentColumn as content",
             "image",
             "news_date as date"
         ])
             ->where('is_active', true)
+            ->orderBy('news_date', 'desc')
+            ->limit(3)
             ->get();
+
+        return response()->json($news);
+    }
+
+    public function news_detail(Request $request)
+    {
+        $lang = $request->get('lang', 'en'); // default en
+        $news_id = $request->get('news_id', '');
+        $titleColumn = $lang === 'sw' ? 'title_sw' : 'title_en';
+        $contentColumn = $lang === 'sw' ? 'content_sw' : 'content_en';
+        $news = News::select([
+            "id",
+            "$titleColumn as title",
+            "$contentColumn as content",
+            "image",
+            "news_date as date"
+        ])
+            ->where('is_active', true)
+            ->where('id', $news_id)
+            ->first();
 
         return response()->json($news);
     }
