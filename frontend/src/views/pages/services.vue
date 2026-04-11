@@ -80,18 +80,37 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 const loading = ref(false);
 
-const our_service = ref([]);
-const services = async () => {
+const CACHE_MINUTES = 5;
+
+const fetchWithCache = async (endpoint, refVar) => {
   loading.value = true;
+  const cacheKey = `cache_${endpoint}`;
+  const cachedData = localStorage.getItem(cacheKey);
+  const cacheTimestamp = localStorage.getItem(`${cacheKey}_timestamp`);
+
+  if (cachedData && cacheTimestamp) {
+    const now = new Date().getTime();
+    if (now - parseInt(cacheTimestamp) < CACHE_MINUTES * 60 * 1000) {
+      refVar.value = JSON.parse(cachedData);
+      loading.value = false;
+      return;
+    }
+  }
+
   try {
-    const res = await api.get("/services");
-    our_service.value = res.data;
+    const res = await api.get(endpoint);
+    refVar.value = res.data;
+    localStorage.setItem(cacheKey, JSON.stringify(res.data));
+    localStorage.setItem(`${cacheKey}_timestamp`, new Date().getTime().toString());
   } catch (err) {
     console.error(err);
   } finally {
     loading.value = false;
   }
 };
+
+const our_service = ref([]);
+const services = () => fetchWithCache("/services", our_service);
 
 onMounted(services);
 </script>

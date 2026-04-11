@@ -112,9 +112,9 @@
                   </li>
                 </ul>
               </div>
-              <router-link to="/about" class="theme-btn"
+              <a href="#" class="theme-btn"
                 >Discover More<i class="fas fa-arrow-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
         </div>
@@ -171,9 +171,9 @@
           </div>
         </div>
         <div class="text-center mt-60 wow fadeInUp" data-wow-delay=".25s">
-          <router-link to="/services" class="theme-btn"
+          <a href="service.html" class="theme-btn"
             >View All Services<i class="fas fa-arrow-right"></i
-          ></router-link>
+          ></a>
         </div>
       </div>
     </div>

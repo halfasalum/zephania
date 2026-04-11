@@ -279,46 +279,45 @@ const loading = ref(false);
 const currentLang = ref(localStorage.getItem("lang") || "en");
 
 
+const CACHE_MINUTES = 5;
+
+const fetchWithCache = async (endpoint, refVar) => {
+  loading.value = true;
+  const cacheKey = `cache_${endpoint}`;
+  const cachedData = localStorage.getItem(cacheKey);
+  const cacheTimestamp = localStorage.getItem(`${cacheKey}_timestamp`);
+
+  if (cachedData && cacheTimestamp) {
+    const now = new Date().getTime();
+    if (now - parseInt(cacheTimestamp) < CACHE_MINUTES * 60 * 1000) {
+      refVar.value = JSON.parse(cachedData);
+      loading.value = false;
+      return;
+    }
+  }
+
+  try {
+    const res = await api.get(endpoint);
+    refVar.value = res.data;
+    localStorage.setItem(cacheKey, JSON.stringify(res.data));
+    localStorage.setItem(`${cacheKey}_timestamp`, new Date().getTime().toString());
+  } catch (err) {
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
+};
+
 /* ======================
    Load Menus
 ====================== */
-const loadMenus = async () => {
-  loading.value = true;
-  try {
-    const res = await api.get("/menus");
-    menus.value = res.data;
-  } catch (err) {
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
+const loadMenus = () => fetchWithCache("/menus", menus);
 
 const generalInfo = ref([]);
-const generalInfoData = async () => {
-  loading.value = true;
-  try {
-    const res = await api.get("/general");
-    generalInfo.value = res.data;
-  } catch (err) {
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
+const generalInfoData = () => fetchWithCache("/general", generalInfo);
 
 const our_service = ref([]);
-const services = async () => {
-  loading.value = true;
-  try {
-    const res = await api.get("/services");
-    our_service.value = res.data;
-  } catch (err) {
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
+const services = () => fetchWithCache("/services", our_service);
 
 
 /* ======================
@@ -329,6 +328,14 @@ const setLanguage = async (lang) => {
 
   // store in localStorage
   localStorage.setItem("lang", lang);
+
+  // Clear all cached API responses so that translated data is fetched immediately
+  for (let i = localStorage.length - 1; i >= 0; i--) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith("cache_")) {
+      localStorage.removeItem(key);
+    }
+  }
 
   // reload data without page refresh
   //await loadMenus();
